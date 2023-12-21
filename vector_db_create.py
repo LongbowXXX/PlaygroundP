@@ -1,17 +1,15 @@
+import chromadb
 from langchain.document_loaders import TextLoader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
-
-import chromadb
-from chromadb.config import Settings
 
 persist_directory = './tmp/chromadb'
 client = chromadb.PersistentClient(path=persist_directory)
 
 # Load the document, split it into chunks, embed each chunk and load it into the vector store.
 raw_documents = TextLoader('./resources/state_of_the_union.txt', "utf-8").load()
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0)
 documents = text_splitter.split_documents(raw_documents)
 
 embeddings = OpenAIEmbeddings()
