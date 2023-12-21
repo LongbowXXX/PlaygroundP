@@ -2,3 +2,6 @@ langchain
 openai
 chromadb
 tiktoken
+langserve[all]
+fastapi
+uvicorn
